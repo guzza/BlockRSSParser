@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "RSSItem.h"
 
+
 @interface RSSParser : NSObject <NSXMLParserDelegate> {
     RSSItem *currentItem;
     NSMutableArray *items;
     NSMutableString *tmpString;
     void (^block)(NSArray *feedItems);
     void (^failblock)(NSError *error);
+    NSString *dateLocale;
 }
-
-
+- (id)initWithDateLocale:(NSString*)dLocale;
 
 + (void)parseRSSFeedForRequest:(NSURLRequest *)urlRequest
                        success:(void (^)(NSArray *feedItems))success

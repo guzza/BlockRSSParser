@@ -18,6 +18,15 @@
     self = [super init];
     if (self) {
         items = [[NSMutableArray alloc] init];
+        dateLocale = @"en_EN";
+    }
+    return self;
+}
+
+- (id)initWithDateLocale:(NSString*)dLocale {
+    self = [self init];
+    if (self) {
+        dateLocale = dLocale;
     }
     return self;
 }
@@ -112,7 +121,7 @@
         if ([elementName isEqualToString:@"pubDate"]) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
-            NSLocale *local = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
+            NSLocale *local = [[NSLocale alloc] initWithLocaleIdentifier:dateLocale];
             [formatter setLocale:local];
           
             [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
